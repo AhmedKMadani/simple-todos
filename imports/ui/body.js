@@ -1,10 +1,18 @@
 import { Template } from 'meteor/templating';
+mport { ReactiveDict } from 'meteor/reactive-dict';
  
 import { Tasks } from '../api/tasks.js';
  
 import './body.html';
 import './task.js'
  
+
+
+Template.body.onCreated(function bodyOnCreated() {
+  this.state = new ReactiveDict();
+});
+
+
 Template.body.helpers({
   tasks() {
     return Tasks.find({}, {sort : {createdAt: -1}});
