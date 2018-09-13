@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-mport { ReactiveDict } from 'meteor/reactive-dict';
+import { ReactiveDict } from 'meteor/reactive-dict';
  
 import { Tasks } from '../api/tasks.js';
  
@@ -36,5 +36,8 @@ Template.body.events({
  
     // Clear form
     target.text.value = '';
+  },
+'change .hide-completed input'(event, instance) {
+    instance.state.set('hideCompleted', event.target.checked);
   },
 });
